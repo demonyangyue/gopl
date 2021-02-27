@@ -4,6 +4,11 @@ This repository is my personal exercises for the book "The Go Programming Langua
 
 ```
 $ cd gopl
-$ go build ./...
-$ ./ex1.1
+$ go install  ./...
+```
+
+Then you can find those binary files under `$GOPATH/bin` and choose one to execute:
+
+```
+$ $GOPATH/bin/ex1.1
 ```
