@@ -1,4 +1,4 @@
-The repository is my personal exercises for the book "The Go Progamming Language".
+This repository is my personal exercises for the book "The Go Programming Language".
 
 ### Build and run
 
