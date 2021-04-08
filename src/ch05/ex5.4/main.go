@@ -69,8 +69,8 @@ func checkAttrVal(attributes []html.Attribute, key string, val string) bool {
 		if attr.Key == key && attr.Val == val {
 			return true
 		}
-		return false
 	}
+	return false
 
 }
 
