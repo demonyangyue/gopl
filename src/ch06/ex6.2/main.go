@@ -64,33 +64,10 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-func (s *IntSet) Len() int {
-	length := 0
-	for _, word := range s.words {
-		for j := 0; j < 64; j++ {
-			if word & (1 << uint(j)) != 0 {
-				length += 1
-			}
-		}
+func (s *IntSet) AddAll(elements ...int)  {
+	for _, elem := range elements {
+		s.Add(elem)
 	}
-	return length
-}
-
-func (s *IntSet) Remove(x int) {
-	word, bit := x/64, uint(x%64)
-	s.words[word] &^= 1 << bit
-}
-
-func (s *IntSet) Clear()  {
-	for i := range s.words {
-		s.words[i] = 0
-	}
-}
-
-func (s *IntSet) Copy() *IntSet  {
-	result :=  &IntSet{}
-	result.words = append(result.words, s.words...)
-	return result
 }
 
 //!-string
@@ -115,8 +92,8 @@ func main() {
 
 	z.Add(63)
 	z.Add(64)
-	z.Remove(64)
-	fmt.Println(z.Len())
+	z.AddAll(65)
+	fmt.Println(z.String())
 
 	// Output:
 	// {1 9 144}

@@ -64,10 +64,22 @@ func (s *IntSet) String() string {
 	return buf.String()
 }
 
-func (s *IntSet) AddAll(elements ...int)  {
-	for _, elem := range elements {
-		s.Add(elem)
+func (s *IntSet) Elems() []int {
+	var result []int
+	for i, word := range s.words {
+		result = append(result, calculateElem(i, word)...)
 	}
+	return result
+}
+
+func calculateElem(i int, word uint64) []int {
+	var result []int
+	for j := 0; j < 64; j++ {
+		if word&(1<<uint(j)) != 0 {
+			result = append(result, j + i * 64)
+		}
+	}
+	return result
 }
 
 //!-string
@@ -92,8 +104,7 @@ func main() {
 
 	z.Add(63)
 	z.Add(64)
-	z.AddAll(65)
-	fmt.Println(z.String())
+	fmt.Println(z.Elems())
 
 	// Output:
 	// {1 9 144}
